@@ -1,6 +1,5 @@
 <h2>Recon and Enumeration</h2>
 <h3>NMAP Commands</h3>
-<p>Nmap (“Network Mapper”) is a free and open source utility for network discovery and security auditing. Many systems and network administrators also find it useful for tasks such as network inventory, managing service upgrade schedules, and monitoring host or service uptime. Nmap uses raw IP packets in novel ways to determine what hosts are available on the network, what services (application name and version) those hosts are offering, what operating systems (and OS versions) they are running, what type of packet filters/firewalls are in use, and dozens of other characteristics. It was designed to rapidly scan large networks, but works fine against single hosts. Nmap runs on all major computer operating systems, and official binary packages are available for Linux, Windows, and Mac OS X.</p>
 <table>
 <thead>
 <tr>
@@ -33,6 +32,66 @@
  <tr>
 <td>ls /usr/share/nmap/scripts/* | grep ftp</td>
 <td>Search nmap scripts for keywords</td>
+</tr>
+</tbody>
+</table>
+<h2>Netstat</h2>
+<p></p>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>netstat -a</td>
+<td>Show all connections</td>
+</tr>
+<tr>
+<td>netstat -at</td>
+<td>Show all TCP connections</td>
+</tr>
+<tr>
+<td>netstat -au</td>
+<td>Show all UDP connections</td>
+</tr>
+<tr>
+<td>netstat -ant</td>
+<td>Show IP Address without Reverse DNS lookup</td>
+</tr>
+<tr>
+<td>netstat -l</td>
+<td>Show all listening ports</td>
+</tr>
+<tr>
+<td>netstat -F</td>
+<td>Display DomainName when possibe</td>
+</tr>
+<tr>
+<td>netstat -c</td>
+<td>Show output continously</td>
+</tr>
+<tr>
+<td>netstat -p</td>
+<td>Show output with PID</td>
+</tr>
+<tr>
+<td>netstat -atnp | grep ESTA</td>
+<td>Show established connections</td>
+</tr>
+<tr>
+<td> watch -d -n0 "netstat -atnp | grep ESTA"</td>
+<td>Show active connections continously</td>
+</tr>
+<tr>
+<td>netstat -tn 2>/dev/null | grep :80 | awk '{print $5}' | cut -d: -f1 | sort | uniq -c | sort -nr | head</td>
+<td>IPs with high number of connections</td>
+</tr>
+<tr>
+<td>netstat -plntu</td>
+<td>Open ports</td>
 </tr>
 </tbody>
 </table>
@@ -290,23 +349,6 @@ samrdump.py SNMP 192.168.X.XXX</td>
 </tr>
 </tbody>
 </table>
-<h2>Passwords</h2>
-<h3>Wordlists</h3>
-<table>
-<thead>
-<tr>
-<th>Command</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>/usr/share/wordlists</td>
-<td>Kali word lists</td>
-</tr>
-</tbody>
-</table>
-<p>Massive wordlist here at <a href="https://thehacktoday.com/password-cracking-dictionarys-download-for-free/" target="_blank">HackToday’s blog</a></p>
 <h2>Brute Forcing Services</h2>
 <h3>Hydra FTP Brute Force</h3>
 <p>Hydra is a parallelized login cracker which supports numerous protocols to attack. It is very fast and flexible, and new modules are easy to add. This tool makes it possible for researchers and security consultants to show how easy it would be to gain unauthorized access to a system remotely. On Ubuntu it can be installed from the synaptic package manager. On Kali Linux, it is per-installed.</p>
@@ -359,7 +401,7 @@ samrdump.py SNMP 192.168.X.XXX</td>
 <p>Use -t to limit concurrent connections, example: -t 15</p>
 <h2>Password Cracking</h2>
 <h3>John The Ripper – JTR</h3>
-<p>John the Ripper is different from tools like Hydra. Hydra does blind brute-forcing by trying username/password combinations on a service daemon like ftp server or telnet server. John however needs the hash first. So the greater challenge for a hacker is to first get the hash that is to be cracked. Now a days hashes are more easily crackable using free rainbow tables available online. Just go to one of the sites, submit the hash and if the hash is made of a common word, then the site would show the word almost instantly. Rainbow tables basically store common words and their hashes in a large database. Larger the database, more the words covered.</p>
+<p>John the Ripper is different from tools like Hydra. Hydra does blind brute-forcing by trying username/password combinations on a service daemon like ftp server or telnet server. John however needs the hash first.</p>
 <table>
 <thead>
 <tr>
@@ -539,9 +581,6 @@ perl —e 'exec "/bin/sh";'</pre>
 <pre>!sh</pre>
 </figure>
 <h2>Metasploit</h2>
-<p>Metasploit was created by H. D. Moore in 2003 as a portable network tool using Perl. By 2007, the Metasploit Framework had been completely rewritten in Ruby. On October 21, 2009, the Metasploit Project announced that it had been acquired by Rapid7, a security company that provides unified vulnerability management solutions.</p>
-<p>Like comparable commercial products such as Immunity’s Canvas or Core Security Technologies’ Core Impact, Metasploit can be used to test the vulnerability of computer systems or to break into remote systems. Like many information security tools, Metasploit can be used for both legitimate and unauthorized activities. Since the acquisition of the Metasploit Framework, Rapid7 has added two open core proprietary editions called Metasploit Express and Metasploit Pro.</p>
-<p>Metasploit’s emerging position as the de facto exploit development framework led to the release of software vulnerability advisories often accompanied by a third party Metasploit exploit module that highlights the exploitability, risk and remediation of that particular bug. Metasploit 3.0 began to include fuzzing tools, used to discover software vulnerabilities, rather than just exploits for known bugs. This avenue can be seen with the integration of the lorcon wireless (802.11) toolset into Metasploit 3.0 in November 2006. Metasploit 4.0 was released in August 2011.</p>
 <h3>Meterpreter Payloads</h3>
 <h3>Windows reverse meterpreter payload</h3>
 <table>
@@ -990,406 +1029,6 @@ ms09_050_smb2_negotiate_func_index</td>
 </tr>
 </tbody>
 </table>
-<h2>ASCII Table Cheat Sheet</h2>
-<p>Useful for Web Application Penetration Testing, or if you get stranded on Mars and need to communicate with NASA.</p>
-<table>
-<thead>
-<tr>
-<th>ASCII</th>
-<th>Character</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>x00</td>
-<td>Null Byte</td>
-</tr>
-<tr>
-<td>x08</td>
-<td>BS</td>
-</tr>
-<tr>
-<td>x09</td>
-<td>TAB</td>
-</tr>
-<tr>
-<td>x0a</td>
-<td>LF</td>
-</tr>
-<tr>
-<td>x0d</td>
-<td>CR</td>
-</tr>
-<tr>
-<td>x1b</td>
-<td>ESC</td>
-</tr>
-<tr>
-<td>x20</td>
-<td>SPC</td>
-</tr>
-<tr>
-<td>x21</td>
-<td>!</td>
-</tr>
-<tr>
-<td>x22</td>
-<td>“</td>
-</tr>
-<tr>
-<td>x23</td>
-<td>#</td>
-</tr>
-<tr>
-<td>x24</td>
-<td>$</td>
-</tr>
-<tr>
-<td>x25</td>
-<td>%</td>
-</tr>
-<tr>
-<td>x26</td>
-<td>&amp;</td>
-</tr>
-<tr>
-<td>x27</td>
-<td>`</td>
-</tr>
-<tr>
-<td>x28</td>
-<td>(</td>
-</tr>
-<tr>
-<td>x29</td>
-<td>)</td>
-</tr>
-<tr>
-<td>x2a</td>
-<td>*</td>
-</tr>
-<tr>
-<td>x2b</td>
-<td>+</td>
-</tr>
-<tr>
-<td>x2c</td>
-<td>,</td>
-</tr>
-<tr>
-<td>x2d</td>
-<td>–</td>
-</tr>
-<tr>
-<td>x2e</td>
-<td>.</td>
-</tr>
-<tr>
-<td>x2f</td>
-<td>/</td>
-</tr>
-<tr>
-<td>x30</td>
-<td>0</td>
-</tr>
-<tr>
-<td>x31</td>
-<td>1</td>
-</tr>
-<tr>
-<td>x32</td>
-<td>2</td>
-</tr>
-<tr>
-<td>x33</td>
-<td>3</td>
-</tr>
-<tr>
-<td>x34</td>
-<td>4</td>
-</tr>
-<tr>
-<td>x35</td>
-<td>5</td>
-</tr>
-<tr>
-<td>x36</td>
-<td>6</td>
-</tr>
-<tr>
-<td>x37</td>
-<td>7</td>
-</tr>
-<tr>
-<td>x38</td>
-<td>8</td>
-</tr>
-<tr>
-<td>x39</td>
-<td>9</td>
-</tr>
-<tr>
-<td>x3a</td>
-<td>:</td>
-</tr>
-<tr>
-<td>x3b</td>
-<td>;</td>
-</tr>
-<tr>
-<td>x3c</td>
-<td>&lt;</td>
-</tr>
-<tr>
-<td>x3d</td>
-<td>=</td>
-</tr>
-<tr>
-<td>x3e</td>
-<td>&gt;</td>
-</tr>
-<tr>
-<td>x3f</td>
-<td>?</td>
-</tr>
-<tr>
-<td>x40</td>
-<td>@</td>
-</tr>
-<tr>
-<td>x41</td>
-<td>A</td>
-</tr>
-<tr>
-<td>x42</td>
-<td>B</td>
-</tr>
-<tr>
-<td>x43</td>
-<td>C</td>
-</tr>
-<tr>
-<td>x44</td>
-<td>D</td>
-</tr>
-<tr>
-<td>x45</td>
-<td>E</td>
-</tr>
-<tr>
-<td>x46</td>
-<td>F</td>
-</tr>
-<tr>
-<td>x47</td>
-<td>G</td>
-</tr>
-<tr>
-<td>x48</td>
-<td>H</td>
-</tr>
-<tr>
-<td>x49</td>
-<td>I</td>
-</tr>
-<tr>
-<td>x4a</td>
-<td>J</td>
-</tr>
-<tr>
-<td>x4b</td>
-<td>K</td>
-</tr>
-<tr>
-<td>x4c</td>
-<td>L</td>
-</tr>
-<tr>
-<td>x4d</td>
-<td>M</td>
-</tr>
-<tr>
-<td>x4e</td>
-<td>N</td>
-</tr>
-<tr>
-<td>x4f</td>
-<td>O</td>
-</tr>
-<tr>
-<td>x50</td>
-<td>P</td>
-</tr>
-<tr>
-<td>x51</td>
-<td>Q</td>
-</tr>
-<tr>
-<td>x52</td>
-<td>R</td>
-</tr>
-<tr>
-<td>x53</td>
-<td>S</td>
-</tr>
-<tr>
-<td>x54</td>
-<td>T</td>
-</tr>
-<tr>
-<td>x55</td>
-<td>U</td>
-</tr>
-<tr>
-<td>x56</td>
-<td>V</td>
-</tr>
-<tr>
-<td>x57</td>
-<td>W</td>
-</tr>
-<tr>
-<td>x58</td>
-<td>X</td>
-</tr>
-<tr>
-<td>x59</td>
-<td>Y</td>
-</tr>
-<tr>
-<td>x5a</td>
-<td>Z</td>
-</tr>
-<tr>
-<td>x5b</td>
-<td>[</td>
-</tr>
-<tr>
-<td>x5c</td>
-<td>\</td>
-</tr>
-<tr>
-<td>x5d</td>
-<td>]</td>
-</tr>
-<tr>
-<td>x5e</td>
-<td>^</td>
-</tr>
-<tr>
-<td>x5f</td>
-<td>_</td>
-</tr>
-<tr>
-<td>x60</td>
-<td>`</td>
-</tr>
-<tr>
-<td>x61</td>
-<td>a</td>
-</tr>
-<tr>
-<td>x62</td>
-<td>b</td>
-</tr>
-<tr>
-<td>x63</td>
-<td>c</td>
-</tr>
-<tr>
-<td>x64</td>
-<td>d</td>
-</tr>
-<tr>
-<td>x65</td>
-<td>e</td>
-</tr>
-<tr>
-<td>x66</td>
-<td>f</td>
-</tr>
-<tr>
-<td>x67</td>
-<td>g</td>
-</tr>
-<tr>
-<td>x68</td>
-<td>h</td>
-</tr>
-<tr>
-<td>x69</td>
-<td>i</td>
-</tr>
-<tr>
-<td>x6a</td>
-<td>j</td>
-</tr>
-<tr>
-<td>x6b</td>
-<td>k</td>
-</tr>
-<tr>
-<td>x6c</td>
-<td>l</td>
-</tr>
-<tr>
-<td>x6d</td>
-<td>m</td>
-</tr>
-<tr>
-<td>x6e</td>
-<td>n</td>
-</tr>
-<tr>
-<td>x6f</td>
-<td>o</td>
-</tr>
-<tr>
-<td>x70</td>
-<td>p</td>
-</tr>
-<tr>
-<td>x71</td>
-<td>q</td>
-</tr>
-<tr>
-<td>x72</td>
-<td>r</td>
-</tr>
-<tr>
-<td>x73</td>
-<td>s</td>
-</tr>
-<tr>
-<td>x74</td>
-<td>t</td>
-</tr>
-<tr>
-<td>x75</td>
-<td>u</td>
-</tr>
-<tr>
-<td>x76</td>
-<td>v</td>
-</tr>
-<tr>
-<td>x77</td>
-<td>w</td>
-</tr>
-<tr>
-<td>x78</td>
-<td>x</td>
-</tr>
-<tr>
-<td>x79</td>
-<td>y</td>
-</tr>
-<tr>
-<td>x7a</td>
-<td>z</td>
-</tr>
-</tbody>
-</table>
 <h2>CISCO IOS Commands</h2>
 <p>A collection of useful Cisco IOS commands.</p>
 <table>
@@ -1495,24 +1134,29 @@ ms09_050_smb2_negotiate_func_index</td>
 <table>
 <thead>
 <tr>
+<th>Calculate</th>
 <th>Hash</th>
 <th>Size</th>
 </tr>
 </thead>
 <tbody>
 <tr>
+<td>md5sum</td>
 <td>MD5 Hash Length</td>
 <td>16 Bytes</td>
 </tr>
 <tr>
+<td>sha1sum</td>
 <td>SHA-1 Hash Length</td>
 <td>20 Bytes</td>
 </tr>
 <tr>
+<td>sha256sum</td>
 <td>SHA-256 Hash Length</td>
 <td>32 Bytes</td>
 </tr>
 <tr>
+<td>sha512sum</td>
 <td>SHA-512 Hash Length</td>
 <td>64 Bytes</td>
 </tr>
